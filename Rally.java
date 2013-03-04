@@ -7,6 +7,7 @@
  */
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -19,10 +20,10 @@ public class Rally {
 	private int noOfDays;
 	private int feeCode;
 	private int placesAvailable;
-	private double[] feeArray = { 0, 10, 15.50, 17.75, 20};
+	private double[] feeArray = { 0, 10, 15.50, 17.75, 20 };
 	private double fullFee;
-	private HashMap<Integer,Rider> competitors = new HashMap<Integer,Rider>();
-	
+	private HashMap<Integer, Rider> competitors = new HashMap<Integer, Rider>();
+	private double rallyTotal;
 
 	/**
 	 * Creates a Rally with a unique id, venue, fee code, no of days and the max
@@ -54,16 +55,15 @@ public class Rally {
 		} else {
 			fullFee = feeArray[feeCode];
 		}
-		if (fullFee > 0)
-		{
+		if (fullFee > 0) {
 			fullFee = fullFee * 1.2;
 		}
-		
+
 	}
-	
-	
+
 	public String getStartDate() {
-		return (startDate.get(5)+"/"+startDate.get(2)+"/"+startDate.get(1));
+		return (startDate.get(5) + "/" + startDate.get(2) + "/" + startDate
+				.get(1));
 	}
 
 	public void setStartDate(int date, int month, int year) {
@@ -81,21 +81,62 @@ public class Rally {
 	public double getFullFee() {
 		return fullFee;
 	}
-	
-	public void changeFee(int fCode,double price) 
-	{
-		feeArray[fCode] = price;	
-	}
-	
-	public String getDetails()
-	{
-		return ("Rally Code: " + getRallyCode() + ", Venue: "+ getVenue() + ", Start Date: " 
-	+ getStartDate() + ", Full Fee: £" + getFullFee() + ", Fee Code: " + feeCode 
-	+ ", No of Days: " + noOfDays + ", Maximum number of people: " + placesAvailable);
+
+	public void changeFee(int fCode, double price) {
+		feeArray[fCode] = price;
 	}
 
-	public void book(Int id, String person)
-	{
-		competitors.put(Rider.idNumber,Rider);
+	public String getDetails() {
+		return ("Rally Code: " + getRallyCode() + ", Venue: " + getVenue()
+				+ ", Start Date: " + getStartDate() + ", Full Fee: £"
+				+ getFullFee() + ", Fee Code: " + feeCode + ", No of Days: "
+				+ noOfDays + ", Maximum number of people: " + placesAvailable);
+	}
+
+	public void book(Rider ride) {
+		if (!isFull()) {
+			competitors.put(ride.getIdNo(), ride);
+			System.out.println("Rider " + ride.getName()
+					+ " is now booked on this Rally!");
+			if (ride.getType().equals("junior")
+					|| ride.getType().equals("youth")) {
+				rallyTotal = rallyTotal + (fullFee / 2);
+			} else {
+				rallyTotal = rallyTotal + fullFee;
+			}
+		} else {
+			System.out
+					.println("Rider "
+							+ ride.getName()
+							+ " can not be booked on this Rally, as it is already full!");
+		}
+	}
+
+	public void leave(Rider ride) {
+		if (competitors.containsKey(ride.getIdNo())) {
+			competitors.remove(ride.getIdNo());
+			System.out.println("Rider " + ride.getName()
+					+ " is no longer booked on this Rally!");
+		} else {
+			System.out.println("Rider " + ride.getName()
+					+ " isn't booked on this Rally, so could not remove!");
+		}
+	}
+
+	public boolean isFull() {
+		return competitors.size() == placesAvailable;
+	}
+
+	public boolean hasBooked(Rider ride) {
+		return competitors.containsKey(ride.getIdNo());
+	}
+
+	public String getRidersOnRally() {
+		String col2 = ("");
+		Collection<Rider> coll = competitors.values();
+		for (Rider temp : coll) {
+		col2 = col2 + temp.toString()+("\n\n");
+		}
+		return col2;
 	}
 }
