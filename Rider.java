@@ -7,7 +7,7 @@
 public class Rider                                
 {
     // fields
-    private int idNumber;                           
+    public int idNumber;                           
     private String name;  
     private String type;  
     private int points;

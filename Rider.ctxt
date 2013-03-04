@@ -1,0 +1,32 @@
+#BlueJ class context
+comment0.params=id\ n\ ty
+comment0.target=Rider(int,\ java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ Creates\ a\ Rider\ with\ a\ unique\ id\ number\ and\ a\ name\ initialised\ from\ \r\n\ parameter\ values,\ \r\n\ pre-condition\ \:\ ty\ \=\=\ "Junior"\ ||\ ty\ \=\=\ "Youth"\ ||ty\ \=\=\ "Adult"\ ||\ ty\ \=\=\ "Senior"\r\n\ @param\ id\ it\ is\ the\ responsibility\ of\ the\ client\ to\ ensure\ that\ id\ is\ a\ unique\ number\r\n\ @param\ n\ is\ the\ String\ representation\ of\ the\ rider's\ name\r\n\ @param\ ty\ is\ the\ type\ of\ rider.\ "Junior",\ "Youth",\ "Adult",\ "Senior"\r\n
+comment1.params=pts
+comment1.target=void\ incrementPoints(int)
+comment1.text=\r\n\ allows\ a\ riders\ points\ to\ be\ incremented\r\n\ @param\ pts\ is\ the\ number\ by\ which\ a\ rider's\ points\ will\ be\ incremented\r\n
+comment2.params=pts
+comment2.target=void\ decrementPoints(int)
+comment2.text=\r\n\ allows\ a\ riders\ points\ to\ be\ decremented\r\n\ @param\ pts\ is\ the\ number\ by\ which\ a\ rider's\ points\ will\ be\ incremented\r\n
+comment3.params=
+comment3.target=int\ getIdNo()
+comment3.text=\r\n\ returns\ rider\ id\ as\ an\ int\r\n\ @return\ value\ returned\ is\ rider\ id\ as\ an\ int\r\n
+comment4.params=
+comment4.target=java.lang.String\ getName()
+comment4.text=\r\n\ returns\ rider\ name\ as\ a\ String\r\n\ @return\ value\ returned\ is\ rider\ name\ as\ a\ String\r\n
+comment5.params=
+comment5.target=int\ getPoints()
+comment5.text=\r\n\ returns\ rider's\ points\ total\ as\ an\ int\r\n\ @return\ value\ returned\ is\ rider\ points\ as\ an\ int\r\n
+comment6.params=
+comment6.target=java.lang.String\ getType()
+comment6.text=\r\n\ returns\ rider's\ ridership\ type\ as\ a\ String\r\n\ @return\ value\ returned\ is\ ridership\ type\ as\ a\ String\r\n
+comment7.params=
+comment7.target=boolean\ isJunior()
+comment7.text=\ returns\ true\ if\ rider\ is\ a\ junior,\ else\ false\r\n\ @return\ true\ if\ rider\ is\ a\ junior,\ else\ false\r\n
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment8.text=\r\n\ Returns\ a\ String\ represnetation\ of\ the\ rider\r\n\ @return\ returns\ a\ String\ representation\ of\ the\ rider,\ including\ the\ id\ number,name,type\ and\ points\r\n
+comment9.params=number
+comment9.target=boolean\ isSameID(int)
+comment9.text=\r\n\ Returns\ true\ if\ the\ parameter\ is\ the\ same\ as\ the\ rider's\ id\ number\r\n\ @param\ number\ is\ the\ value\ to\ be\ compared\ with\ the\ rider's\ id\r\n\ @return\ returns\ true\ if\ the\ rider's\ id\ number\ is\ the\ same\ as\ that\ of\ the\ parameter,\r\n\ false\ otherwise\r\n
+numComments=10
