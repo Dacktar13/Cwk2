@@ -87,10 +87,10 @@ public class Rally {
 	}
 
 	public String getDetails() {
-		return ("Rally Code: " + getRallyCode() + ", Venue: " + getVenue()
+		return "Rally Code: " + getRallyCode() + ", Venue: " + getVenue()
 				+ ", Start Date: " + getStartDate() + ", Full Fee: £"
 				+ getFullFee() + ", Fee Code: " + feeCode + ", No of Days: "
-				+ noOfDays + ", Maximum number of people: " + placesAvailable);
+				+ noOfDays + ", Maximum number of people: " + placesAvailable;
 	}
 
 	public void book(Rider ride) {
@@ -132,11 +132,22 @@ public class Rally {
 	}
 
 	public String getRidersOnRally() {
-		String col2 = ("");
+		String str = "";
 		Collection<Rider> coll = competitors.values();
-		for (Rider temp : coll) {
-		col2 = col2 + temp.toString()+("\n\n");
+		for (Rider ride : coll) {
+			str += ride + "\n";
 		}
-		return col2;
+		return str;
+	}
+
+	public double getMoneyPaid() {
+		return rallyTotal;
+	}
+
+	public String getAsString() {
+		return "Details of Rally:\n\n" + getDetails()
+				+ "\n\nNumber of competitors booked: " + competitors.size()
+				+ "\n\nRaider Details on Rally:" + getRidersOnRally()
+				+ "\nTotal amount Rally has taken: £" + getMoneyPaid();
 	}
 }
