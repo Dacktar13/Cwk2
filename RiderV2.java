@@ -9,7 +9,7 @@ public class RiderV2 {
 	// fields
 	public int idNumber;
 	private String name;
-	public static enum type{JUNIOR, YOUTH, ADULT, SENIOR};
+	public static enum Type{JUNIOR, YOUTH, ADULT, SENIOR};
 	private int points;
 	private static int id = 100;
 	
@@ -27,12 +27,12 @@ public class RiderV2 {
 	 * @param ty
 	 *            is the type of rider. "Junior", "Youth", "Adult", "Senior"
 	 */
-	public RiderV2(String n, String ty) {
+	public RiderV2(String n, Type ty) {
 		idNumber = id;
 		id++;
 		name = n;
 		points = 0;
-		type = ty.toLowerCase(); // !!!!notice this
+		type = ty.toUpperCase(); // !!!!notice this
 	}
 
 	/**
