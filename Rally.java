@@ -155,14 +155,20 @@ public class Rally {
 	 */
 	public void book(Rider ride) {
 		if (!isFull()) {
-			competitors.put(ride.getIdNo(), ride);
-			System.out.println("Rider " + ride.getName()
-					+ " is now booked on this Rally(" + rallyCode + ")!");
-			if (ride.getType().equals("junior")
-					|| ride.getType().equals("youth")) {
-				rallyTotal = rallyTotal + (fullFee / 2);
+			if (hasBooked(ride)) {
+				System.out.println("Rider " + ride.getName()
+						+ " can not be booked on this Rally(" + rallyCode
+						+ "), as the rider is already on it!");
 			} else {
-				rallyTotal = rallyTotal + fullFee;
+				competitors.put(ride.getIdNo(), ride);
+				System.out.println("Rider " + ride.getName()
+						+ " is now booked on this Rally(" + rallyCode + ")!");
+				if (ride.getType().equals("junior")
+						|| ride.getType().equals("youth")) {
+					rallyTotal = rallyTotal + (fullFee / 2);
+				} else {
+					rallyTotal = rallyTotal + fullFee;
+				}
 			}
 		} else {
 			System.out.println("Rider " + ride.getName()

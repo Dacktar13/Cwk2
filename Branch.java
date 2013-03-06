@@ -63,7 +63,14 @@ public class Branch {
 	 *            this selects the rally the rider is to be booked onto.
 	 */
 	public void joinRally(Rider ride, Rally ral) {
-		ral.book(ride);
+		if (isRider(ride.getIdNo()))
+			{
+			ral.book(ride);
+			}
+		else
+		{
+			System.out.println("This rider is not a member of the branch! Rider NOT booked onto rally.");
+		}
 	}
 
 	/**
@@ -92,6 +99,21 @@ public class Branch {
 	public boolean isRally(String rCode) {
 		return allRallies.containsKey(rCode);
 	} // does not get used???????
+	
+	/**
+	 * returns whether the Rider is contained in the allRiders collection as a
+	 * boolean.
+	 * 
+	 * @param rideId
+	 *            this selects the rider to be searched for.
+	 * 
+	 * @return value returned is whether the Rider is contained in the
+	 *         allRiders collection as a boolean.
+	 * 
+	 */
+	public boolean isRider(int rideId) {
+		return allRiders.containsKey(rideId);
+	} 
 
 	/**
 	 * returns the Rally if it is contained in the allRallies collection as a
@@ -216,7 +238,7 @@ public class Branch {
 	public String getAllBranchInfo() {
 		return "Branch: " + branchName + "\n\nRiders:\n" + getAllRiders()
 				+ "\nRallies:\n" + getAllRallies() + "\nList of ventues: "
-				+ getAllVenues();
+				+ getAllVenues() + "\n\n";
 	}
 
 }
