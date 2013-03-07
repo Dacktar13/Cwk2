@@ -11,6 +11,7 @@ public class RiderV2 {
 	private String name;
 	public static enum Type{JUNIOR, YOUTH, ADULT, SENIOR};
 	private int points;
+	private Type riderType;
 	private static int id = 100;
 	
 
@@ -31,8 +32,8 @@ public class RiderV2 {
 		idNumber = id;
 		id++;
 		name = n;
-		points = 0;
-		type = ty.toUpperCase(); // !!!!notice this
+		points = 0; 
+		riderType = ty; // !!!!notice this 
 	}
 
 	/**
@@ -83,12 +84,12 @@ public class RiderV2 {
 	}
 
 	/**
-	 * returns rider's ridership type as a String
+	 * returns rider's ridership type as a Type
 	 * 
-	 * @return value returned is ridership type as a String
+	 * @return value returned is ridership type as a Type
 	 */
-	public String getType() {
-		return type;
+	public Type getType() {
+		return riderType;
 	}
 
 	/**
@@ -97,7 +98,7 @@ public class RiderV2 {
 	 * @return true if rider is a junior, else false
 	 */
 	public boolean isJunior() {
-		return type.equals("junior");
+		return riderType.equals("JUNIOR");
 	}
 
 	/**
@@ -108,7 +109,7 @@ public class RiderV2 {
 	 */
 	public String toString() {
 		return ("\n" + idNumber + "  " + name + "\n    Membership Type: "
-				+ type + "  Total points : " + points);
+				+ riderType + "  Total points : " + points);
 	}
 
 	/**
