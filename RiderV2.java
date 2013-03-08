@@ -98,7 +98,7 @@ public class RiderV2 {
 	 * @return true if rider is a junior, else false
 	 */
 	public boolean isJunior() {
-		return riderType.equals("JUNIOR");
+		return riderType == Type.JUNIOR;
 	}
 
 	/**
