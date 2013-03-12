@@ -20,10 +20,11 @@ public class Rally {
 	private int noOfDays;
 	private int feeCode;
 	private int placesAvailable;
-	private double[] feeArray = { 0, 10, 15.50, 17.75, 20 };
+	private static double[] feeArray = { 0, 10, 15.50, 17.75, 20 };
 	private double fullFee;
 	private HashMap<Integer, Rider> competitors = new HashMap<Integer, Rider>();
 	private double rallyTotal;
+	private static double vatRate = 0.2;
 
 	/**
 	 * Creates a Rally with a unique id, venue, fee code, no of days and the max
@@ -51,12 +52,12 @@ public class Rally {
 		noOfDays = days;
 		placesAvailable = maxp;
 		if (noOfDays > 1) {
-			fullFee = ((noOfDays - 1) * 25) + feeArray[feeCode];
+			fullFee = ((noOfDays - 1) * 25) + feeArray[feeCode]; // If number of days is greater than 1 then it calculates the fullFee.
 		} else {
 			fullFee = feeArray[feeCode];
 		}
-		if (fullFee > 0) {
-			fullFee = fullFee * 1.2;
+		if (fullFee != 0) {
+			fullFee = (fullFee * vatRate) + fullFee; // If fullFee is not £0.00 the it adds VAT.
 		}
 
 	}
