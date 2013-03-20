@@ -84,7 +84,8 @@ public class BranchIO {
 				.print("Please enter Rider Type! (Senior, Adult, Youth, Junior)");
 		String rType = reader.nextLine();
 
-		branch1.addRider(new Rider(rId, rName, rType));
+		int feedback = branch1.addRider(new Rider(rId, rName, rType));
+		feedback(feedback);
 	}
 
 	private void addRally() {
@@ -100,14 +101,16 @@ public class BranchIO {
 				.print("Please enter the number of days the Rally is running!");
 		int rDays = reader.nextInt();
 
-		System.out.print("Please enter the Rally Fee Code! (0,1,2,3,4)");
+		System.out.print("Please enter the Rally Fee Code! (0 : £"+ Rally.feeArray[0] + ", 1 : £"+ Rally.feeArray[1] 
+				+ ", 2 : £"+ Rally.feeArray[2] + ", 3 : £"+ Rally.feeArray[3] + ", 4 : £"+ Rally.feeArray[4] + ")");
 		int rFeeCode = reader.nextInt();
 
 		System.out
 				.print("Please enter the maximum number of Riders allowed to book on the Rally!");
 		int rPlaces = reader.nextInt();
 
-		branch1.addRally(new Rally(rId, rName, rDays, rFeeCode, rPlaces));
+		int feedback = branch1.addRally(new Rally(rId, rName, rDays, rFeeCode, rPlaces));
+		feedback(feedback);
 	}
 
 	private void bookRiderOnRally() {
@@ -120,7 +123,11 @@ public class BranchIO {
 		reader.nextLine();
 		String rallyId = reader.nextLine();
 
-		branch1.joinRally(branch1.findRider(rideId), branch1.findRally(rallyId));
+		int feedback = branch1.joinRally(branch1.findRider(rideId),
+				branch1.findRally(rallyId));
+
+		feedback(feedback);
+
 	}
 
 	private void addPoints() {
@@ -133,5 +140,49 @@ public class BranchIO {
 		int pts = reader.nextInt();
 
 		branch1.addRiderPoints(rId, pts);
+
 	}
+
+	private void feedback(int feedback) {
+		if (feedback == 1) {
+			System.out
+					.println("This rider is not a member of the branch! Rider NOT booked onto rally.");
+		} else {
+			if (feedback == 2) {
+				System.out
+						.println("Rider can not be booked on this Rally, as the rider is already on it!");
+			} else {
+				if (feedback == 3) {
+					System.out.println("Rider is now booked on this Rally!");
+				} else {
+					if (feedback == 4) {
+						System.out
+								.println("Rider can not be booked on this Rally, as it is already full!");
+					} else {
+						if (feedback == 5) {
+							System.out
+									.println("Rider is no longer booked on the Rally!");
+						} else {
+							if (feedback == 6) {
+								System.out
+										.println("Rider isn't booked on this Rally, so could not be remove!");
+							} else {
+								if (feedback == 7) {
+									System.out
+											.println("Rider is now booked at this Branch!");
+								} else {
+									if (feedback == 8) {
+										System.out
+												.println("Rally is now booked at this Branch!");
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
 }

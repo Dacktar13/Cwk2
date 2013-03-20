@@ -20,7 +20,7 @@ public class Rally {
 	private int noOfDays;
 	private int feeCode;
 	private int placesAvailable;
-	private static double[] feeArray = { 0, 10, 15.50, 17.75, 20 };
+	public static double[] feeArray = { 0, 10, 15.50, 17.75, 20 };
 	private double fullFee;
 	private HashMap<Integer, Rider> competitors = new HashMap<Integer, Rider>();
 	private double rallyTotal;
@@ -52,12 +52,20 @@ public class Rally {
 		noOfDays = days;
 		placesAvailable = maxp;
 		if (noOfDays > 1) {
-			fullFee = ((noOfDays - 1) * 25) + feeArray[feeCode]; // If number of days is greater than 1 then it calculates the fullFee.
+			fullFee = ((noOfDays - 1) * 25) + feeArray[feeCode]; // If number of
+																	// days is
+																	// greater
+																	// than 1
+																	// then it
+																	// calculates
+																	// the
+																	// fullFee.
 		} else {
 			fullFee = feeArray[feeCode];
 		}
 		if (fullFee != 0) {
-			fullFee = (fullFee * vatRate) + fullFee; // If fullFee is not £0.00 the it adds VAT.
+			fullFee = (fullFee * vatRate) + fullFee; // If fullFee is not £0.00
+														// the it adds VAT.
 		}
 
 	}
@@ -153,28 +161,26 @@ public class Rally {
 	 * 
 	 * @param ride
 	 *            this selects the rider to be added to the rally.
+	 * 
+	 * @return value returned is a feedback value for a response as defined in
+	 *         the client class.
 	 */
-	public void book(Rider ride) {
+	public int book(Rider ride) {
 		if (!isFull()) {
 			if (hasBooked(ride)) {
-				System.out.println("Rider " + ride.getName()
-						+ " can not be booked on this Rally(" + rallyCode
-						+ "), as the rider is already on it!");
+				return 2; // Feedback response
 			} else {
 				competitors.put(ride.getIdNo(), ride);
-				System.out.println("Rider " + ride.getName()
-						+ " is now booked on this Rally(" + rallyCode + ")!");
 				if (ride.getType().equals("junior")
 						|| ride.getType().equals("youth")) {
 					rallyTotal = rallyTotal + (fullFee / 2);
 				} else {
 					rallyTotal = rallyTotal + fullFee;
 				}
+				return 3; // Feedback response
 			}
 		} else {
-			System.out.println("Rider " + ride.getName()
-					+ " can not be booked on this Rally(" + rallyCode
-					+ "), as it is already full!");
+			return 4; // Feedback response
 		}
 	}
 
@@ -183,15 +189,16 @@ public class Rally {
 	 * 
 	 * @param ride
 	 *            this selects the rider to be removed from the rally.
+	 * 
+	 * @return value returned is a feedback value for a response as defined in
+	 *         the client class.
 	 */
-	public void leave(Rider ride) {
+	public int leave(Rider ride) {
 		if (competitors.containsKey(ride.getIdNo())) {
 			competitors.remove(ride.getIdNo());
-			System.out.println("Rider " + ride.getName()
-					+ " is no longer booked on this Rally(" + rallyCode + ")!");
+			return 5; // Feedback response
 		} else {
-			System.out.println("Rider " + ride.getName()
-					+ " isn't booked on this Rally, so could not remove!");
+			return 6; // Feedback response
 		}
 	}
 

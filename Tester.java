@@ -9,7 +9,7 @@ public class Tester {
 	// instance variables
 
 	// Creates 5 riders
-	private Rider ri1 = new Rider(1, "Seth", "Senior");
+	private Rider ri1 = new Rider(1, "Seth", "Senior"); // Adds rider1
 	private Rider ri2 = new Rider(2, "Jasper", "Junior");
 	private Rider ri3 = new Rider(3, "Claire", "Adult");
 	private Rider ri4 = new Rider(4, "Jack", "Youth");
@@ -73,6 +73,8 @@ public class Tester {
 		br1.joinRally(ri3, ra3);
 		System.out.println("ri1 should be added to ra1!");
 		br1.joinRally(ri4, ra3);
+		
+		// leaves riders from rally
 		System.out.println("ri1 should be removed from ra1!");
 		br1.leaveRally(ri3, ra3);
 

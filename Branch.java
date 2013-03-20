@@ -34,11 +34,13 @@ public class Branch {
 	 * 
 	 * @param ride
 	 *            this selects the rider to be added to the branch.
+	 * 
+	 * @return value returned is a feedback value for a response as defined in
+	 *         the client class.
 	 */
-	public void addRider(Rider ride) {
+	public int addRider(Rider ride) {
 		allRiders.put(ride.getIdNo(), ride);
-		System.out.println("Rider " + ride.getName()
-				+ " is now booked at this Branch!");
+		return 7; // Feedback response
 	}
 
 	/**
@@ -46,30 +48,33 @@ public class Branch {
 	 * 
 	 * @param ral
 	 *            this selects the rally to be added to the branch.
+	 * 
+	 * @return value returned is a feedback value for a response as defined in
+	 *         the client class.
 	 */
-	public void addRally(Rally ral) {
+	public int addRally(Rally ral) {
 		allRallies.put(ral.getRallyCode(), ral);
 		allVenues.add(ral.getVenue());
-		System.out.println("Rally " + ral.getRallyCode()
-				+ " is now booked at this Branch!");
+		return 8; // Feedback response
 	}
 
 	/**
-	 * allows the rider to be booked onto a particular rally.
+	 * allows the rider to be booked onto a particular rally. Then returns an
+	 * feedback message value to the Class that called it.
 	 * 
 	 * @param ride
 	 *            this selects the rider to be booked onto the rally.
 	 * @param ral
 	 *            this selects the rally the rider is to be booked onto.
+	 * 
+	 * @return value returned is a feedback value for a response as defined in
+	 *         the client class.
 	 */
-	public void joinRally(Rider ride, Rally ral) {
-		if (isRider(ride.getIdNo()))
-			{
-			ral.book(ride);
-			}
-		else
-		{
-			System.out.println("This rider is not a member of the branch! Rider NOT booked onto rally.");
+	public int joinRally(Rider ride, Rally ral) {
+		if (isRider(ride.getIdNo())) {
+			return ral.book(ride);
+		} else {
+			return 1; // feedback response
 		}
 	}
 
@@ -99,7 +104,7 @@ public class Branch {
 	public boolean isRally(String rCode) {
 		return allRallies.containsKey(rCode);
 	} // does not get used???????
-	
+
 	/**
 	 * returns whether the Rider is contained in the allRiders collection as a
 	 * boolean.
@@ -107,13 +112,13 @@ public class Branch {
 	 * @param rideId
 	 *            this selects the rider to be searched for.
 	 * 
-	 * @return value returned is whether the Rider is contained in the
-	 *         allRiders collection as a boolean.
+	 * @return value returned is whether the Rider is contained in the allRiders
+	 *         collection as a boolean.
 	 * 
 	 */
 	public boolean isRider(int rideId) {
 		return allRiders.containsKey(rideId);
-	} 
+	}
 
 	/**
 	 * returns the Rally if it is contained in the allRallies collection as a
@@ -156,8 +161,6 @@ public class Branch {
 	public void addRiderPoints(int rId, int pts) {
 		if (findRider(rId) != null) {
 			findRider(rId).incrementPoints(pts);
-			System.out.println("Rider " + findRider(rId).getName()
-					+ " is now on " + findRider(rId).getPoints() + " points!");
 		}
 	}
 
