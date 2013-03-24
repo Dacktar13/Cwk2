@@ -14,6 +14,7 @@ public class Tester {
 	private Rider ri3 = new Rider(3, "Claire", "Adult");
 	private Rider ri4 = new Rider(4, "Jack", "Youth");
 	private Rider ri5 = new Rider(5, "Logan", "Youth");
+	private Rider ri6 = new Rider(5, "Abbie", "Youth"); // Should fail as Id already used.
 	// creates 4 rallies
 	private Rally ra1 = new Rally("HT1", "Hatfield House", 5, 2, 4);
 	private Rally ra2 = new Rally("ST1", "Stevenage Football Stadium", 2, 1, 3);
